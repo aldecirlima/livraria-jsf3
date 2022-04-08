@@ -1,12 +1,15 @@
 package br.com.caelum.livraria.modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Livro {
@@ -18,15 +21,14 @@ public class Livro {
 	private String titulo;
 	private String isbn;
 	private Double preco;
-	private String dataLancamento;
+
+	@Temporal(TemporalType.DATE)
+	private Calendar dataLancamento = Calendar.getInstance();
 
 	@ManyToMany
 	private List<Autor> autores = new ArrayList<Autor>();
-	
-	
-	
 
-	public Livro(Integer id, String titulo, String isbn, Double preco, String dataLancamento) {
+	public Livro(Integer id, String titulo, String isbn, Double preco, Calendar dataLancamento) {
 		this.id = id;
 		this.titulo = titulo;
 		this.isbn = isbn;
@@ -44,7 +46,6 @@ public class Livro {
 	public void adicionaAutor(Autor autor) {
 		this.autores.add(autor);
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -70,19 +71,19 @@ public class Livro {
 		this.isbn = isbn;
 	}
 
-	public double getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(double preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
-	public String getDataLancamento() {
+	public Calendar getDataLancamento() {
 		return dataLancamento;
 	}
 
-	public void setDataLancamento(String dataLancamento) {
+	public void setDataLancamento(Calendar dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
 
