@@ -22,7 +22,7 @@ public class Livro {
 	private String isbn;
 	private Double preco;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataLancamento = Calendar.getInstance();
 
 	@ManyToMany
