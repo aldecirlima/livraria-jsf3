@@ -25,6 +25,35 @@
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
+		<h:form id="formTabelaAutores">
+			<h:dataTable id="tabelaAutores" value="#{autorBean.autores}"
+				var="autor">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{autor.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{autor.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandLink value="Alterar" title="Alterar Autor">
+						<f:setPropertyActionListener target="#{autorBean.autor}"
+							value="#{autor}" />
+					</h:commandLink>
+					
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink title="Remover autor" value="Remover"
+						action="#{autorBean.remover(autor)}" />
+				</h:column>
+
+
+			</h:dataTable>
+		</h:form>
 	</ui:define>
 
 	<ui:define name="footer">

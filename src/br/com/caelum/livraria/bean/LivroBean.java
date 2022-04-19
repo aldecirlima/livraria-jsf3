@@ -48,8 +48,26 @@ public class LivroBean {
 					new FacesMessage("Livro deve ter pelo menos um autor."));
 			return;
 		}
-		new DAO<Livro>(Livro.class).adiciona(this.livro);
+		if (this.livro.getId() == null) {
+			new DAO<Livro>(Livro.class).adiciona(this.livro);
+		} else {
+			new DAO<Livro>(Livro.class).atualiza(this.livro);
+		}
 		this.livro = new Livro();
+	}
+
+//	public void carregar(Livro livro) {
+//		System.out.println("Carregando livro...");
+//		this.livro = livro;
+//	}
+
+	public void removerAutorDoLivro(Autor autor) {
+		this.livro.removeAutor(autor);
+	}
+
+	public void remover(Livro livro) {
+		System.out.println("Removendo livro");
+		new DAO<Livro>(Livro.class).remove(livro);
 	}
 
 	public RedirectView formAutor() {
@@ -66,6 +84,10 @@ public class LivroBean {
 
 	public Livro getLivro() {
 		return livro;
+	}
+
+	public void setLivro(Livro livro) {
+		this.livro = livro;
 	}
 
 	public Integer getAutorId() {
