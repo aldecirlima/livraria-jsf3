@@ -25,9 +25,10 @@ public class Livro {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataLancamento = Calendar.getInstance();
-	
-	// Lazy inicialization = preguiçosamente inicializado. Para corrigir adicionar o fetch, conforme abaixo.
-	@ManyToMany(fetch=FetchType.EAGER) 
+
+	// Lazy inicialization = preguiçosamente inicializado. Para corrigir adicionar o
+	// fetch, conforme abaixo.
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<Autor>();
 
 	public Livro(Integer id, String titulo, String isbn, Double preco, Calendar dataLancamento) {
@@ -91,7 +92,7 @@ public class Livro {
 
 	public void removeAutor(Autor autor) {
 		this.autores.remove(autor);
-		
+
 	}
 
 }
