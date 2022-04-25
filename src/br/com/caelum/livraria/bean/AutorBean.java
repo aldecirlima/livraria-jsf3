@@ -7,13 +7,14 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.modelo.Autor;
+import br.com.caelum.livraria.util.RedirectView;
 
 @ManagedBean
 @ViewScoped
 public class AutorBean {
 
 	private Autor autor = new Autor();
-	
+
 	private Integer autorId;
 
 	public Autor getAutor() {
@@ -35,11 +36,11 @@ public class AutorBean {
 	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
 	}
-	
+
 	public void carregarAutorPelaId() {
 		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
 	}
-	
+
 //	public void carregarAutorPelaId() {
 //	    Integer id = this.autor.getId();
 //	    this.autor = new DAO<Autor>(Autor.class).buscaPorId(id);
@@ -48,7 +49,7 @@ public class AutorBean {
 //	    }
 //	}
 
-	public void gravar() {
+	public String gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
 		if (this.autor.getId() == null) {
 			new DAO<Autor>(Autor.class).adiciona(this.autor);
@@ -57,16 +58,17 @@ public class AutorBean {
 		}
 
 		this.autor = new Autor();
-//		return new RedirectView("livro");
+		return new RedirectView("livro").toString();
 	}
 
 //	public void carregar(Autor autor) {
 //		System.out.println("Carregando Autor...");
 //		this.autor = autor;
 //	}
-	
+
 	public void remover(Autor autor) {
 		System.out.println("Removendo autor");
 		new DAO<Autor>(Autor.class).remove(autor);
 	}
+
 }
