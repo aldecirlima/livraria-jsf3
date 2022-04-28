@@ -1,0 +1,12 @@
+.duas-colunas-sem-margem {
+	display: flex;
+	flex-direction: row;
+}
+
+.icon-logout {
+	float: left;
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+}

@@ -6,19 +6,27 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head />
+
+<h:head>
+	<link rel="StyleSheet" type="text/css" href="css/estilos-template.css"
+		media="screen" />
+</h:head>
 <h:body>
 
 	<div id="cabecalho">
 		<h:graphicImage library="img" name="logo.png" />
 		<h:form rendered="#{usuarioLogado != null}">
-			<p:commandLink value="Logout" action="#{loginBean.deslogar}"/>
-			<br />
-			<p:outputPanel><p>Usuário logado: #{usuarioLogado.email}</p></p:outputPanel>
+			<div class="duas-colunas-sem-margem">
+				<p:outputPanel>
+					Usuário logado: #{usuarioLogado.email}
+				</p:outputPanel>
+				<p:commandLink title="Sair" action="#{loginBean.deslogar}"
+					class="fa fa-sign-out icon-logout" />
+			</div>
 		</h:form>
-		<h1>
+		<h2>
 			<ui:insert name="titulo"></ui:insert>
-		</h1>
+		</h2>
 	</div>
 	<div id="conteudo">
 		<ui:insert name="conteudo"></ui:insert>
