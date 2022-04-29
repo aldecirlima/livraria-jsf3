@@ -17,7 +17,7 @@
 		<div
 			style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
 			<h:graphicImage library="img" name="logo.png" />
-			
+
 			<div>
 				<h:form rendered="#{usuarioLogado != null}">
 
@@ -26,13 +26,27 @@
 						<p:menuitem value="Autores" action="autor" icon="ui-icon-person" />
 						<p:menuitem value="Ring" action="ring"
 							icon="ui-icon-arrowthick-2-e-w" />
+						<p:menuitem value="Carousel" action="carousel"
+							icon="ui-icon-transfer-e-w" />
 						<p:separator />
 						<p:menuitem value="Logout" action="#{loginBean.deslogar}"
 							icon="ui-icon-power" />
 					</p:menuButton>
 				</h:form>
 			</div>
-			
+
+			<div>
+				<h:form rendered="#{usuarioLogado != null}">
+					<p:themeSwitcher id="basic" style="width:165px"
+						value="#{temaBean.tema}">
+						<f:selectItem itemLabel="Escolha o tema" itemValue="" />
+						<f:selectItems value="#{temaBean.temas}" var="tema" itemLabel="#{tema}" itemValue="#{tema}" />
+						<f:ajax />
+					</p:themeSwitcher>
+				</h:form>
+
+			</div>
+
 			<div
 				style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 				<h:form rendered="#{usuarioLogado != null}">
@@ -44,14 +58,14 @@
 				</p:outputPanel>
 				</h:form>
 			</div>
-			
+
 		</div>
-		
+
 		<p:growl id="messages" showDetail="true" autoUpdate="true" />
-		
+
 		<h2>
 			<ui:insert name="titulo"></ui:insert>
-			
+
 		</h2>
 	</div>
 	<div id="conteudo">
