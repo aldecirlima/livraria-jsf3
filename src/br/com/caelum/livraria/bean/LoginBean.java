@@ -28,7 +28,7 @@ public class LoginBean {
 //		O escopo de flash mantém o componente "Messages" ativo por duas requisições,
 //			sendo assim, a mensagem estará ativa nesta e na próxima requisição.
 		context.getExternalContext().getFlash().setKeepMessages(true);;
-		context.addMessage(null, new FacesMessage("Usuário não encontrado"));
+		context.addMessage(null, new FacesMessage("Usuário ou senha inválidos"));
 		
 //		Caso o usuário erre a senha, redirecionar de volta para login para limpar o cache de usuário e senha. 
 		return new RedirectView("login").toString();

@@ -9,17 +9,18 @@
 <ui:composition template="_template.xhtml">
 
 	<ui:define name="titulo">
+	
 		<p:outputPanel>Novo Livro</p:outputPanel>
+		
 	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form>
 			<p:fieldset>
 
-				<p:messages id="messagesForm" />
 				<p:fieldset legend="Dados do Livro">
 
-					<p:panelGrid columns="3">
+					<p:panelGrid columns="2">
 
 						<p:outputLabel value="Titulo:" for="titulo" />
 						<p:inputText id="titulo" value="#{livroBean.livro.titulo}"
@@ -28,14 +29,12 @@
 							<f:validateLength maximum="40" />
 							<f:ajax event="blur" render="msgTitulo" />
 						</p:inputText>
-						<p:message for="titulo" id="msgTitulo" />
 
 						<p:outputLabel value="ISBN:" for="isbn" />
 						<p:inputMask id="isbn" value="#{livroBean.livro.isbn}"
 							validator="#{livroBean.comecaComDigitoUm}" mask="999-9-999999-9">
 							<f:ajax event="blur" render="msgIsbn" />
 						</p:inputMask>
-						<p:message for="isbn" id="msgIsbn" />
 
 						<p:outputLabel value="Preço:" for="preco" />
 						<p:inputText id="preco" value="#{livroBean.livro.preco}"
@@ -45,7 +44,6 @@
 							<f:validateDoubleRange minimum="1.00" maximum="1000.00" />
 							<f:ajax event="blur" render="msgPreco" />
 						</p:inputText>
-						<p:message for="preco" id="msgPreco" />
 
 						<p:outputLabel value="Data de Lançamento:" for="dataLancamento" />
 						<p:calendar id="dataLancamento"
@@ -90,29 +88,36 @@
 				<br />
 				<p:commandButton value="Gravar" action="#{livroBean.gravar}"
 					process="@form"
-					update="@form :formTabelaLivros:tabelaLivros messagesForm" />
+					update="@form :formTabelaLivros:tabelaLivros" />
 			</p:fieldset>
 		</h:form>
 		<br />
 		<h:form id="formTabelaLivros">
 			<p:dataTable id="tabelaLivros" value="#{livroBean.livros}"
-				var="livro">
+				var="livro" rows="5" paginator="true" emptyMessage="Nenhum livro">
 				<f:facet name="header">Livros</f:facet>
-				<p:column headerText="Título">
+				<p:column headerText="Título" sortBy="#{livro.titulo}"
+					filterBy="#{livro.titulo}" filterMatchMode="startsWith">
 					<h:outputText value="#{livro.titulo}" />
 				</p:column>
 
-				<p:column>
+				<p:column sortBy="#{livro.isbn}" filterBy="#{livro.isbn}"
+					filterMatchMode="contains">
 					<f:facet name="header">ISBN</f:facet>
 					<h:outputText value="#{livro.isbn}" />
 				</p:column>
 
-				<p:column>
-					<f:facet name="header">Preço</f:facet>
-					<h:outputText value="#{livro.preco}" />
+				<p:column headerText="Preço" sortBy="#{livro.preco}"
+					filterBy="#{livro.preco}"
+					filterFunction="#{livroBean.precoEhMenor}">
+					<h:outputText value="#{livro.preco}">
+						<f:convertNumber type="currency" pattern="R$ #0.00"
+							currencySymbol="R$" locale="pt_BR" />
+					</h:outputText>
 				</p:column>
 
-				<p:column>
+				<p:column sortBy="#{livro.dataLancamento.time}"
+					filterBy="#{livro.dataLancamento.time}" filterMatchMode="contains">
 					<f:facet name="header">Data</f:facet>
 					<h:outputText value="#{livro.dataLancamento.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />

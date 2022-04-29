@@ -14,18 +14,44 @@
 <h:body>
 
 	<div id="cabecalho">
-		<h:graphicImage library="img" name="logo.png" />
-		<h:form rendered="#{usuarioLogado != null}">
-			<div class="duas-colunas-sem-margem">
-				<p:outputPanel>
-					Usuário logado: #{usuarioLogado.email}
-				</p:outputPanel>
-				<p:commandLink title="Sair" action="#{loginBean.deslogar}"
-					class="fa fa-sign-out icon-logout" />
+		<div
+			style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+			<h:graphicImage library="img" name="logo.png" />
+			
+			<div>
+				<h:form rendered="#{usuarioLogado != null}">
+
+					<p:menuButton value="Menu">
+						<p:menuitem value="Livro" action="livro" icon="ui-icon-note" />
+						<p:menuitem value="Autores" action="autor" icon="ui-icon-person" />
+						<p:menuitem value="Ring" action="ring"
+							icon="ui-icon-arrowthick-2-e-w" />
+						<p:separator />
+						<p:menuitem value="Logout" action="#{loginBean.deslogar}"
+							icon="ui-icon-power" />
+					</p:menuButton>
+				</h:form>
 			</div>
-		</h:form>
+			
+			<div
+				style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+				<h:form rendered="#{usuarioLogado != null}">
+					<p:outputPanel>
+					Usuário logado
+				</p:outputPanel>
+					<p:outputPanel>
+					#{usuarioLogado.email}
+				</p:outputPanel>
+				</h:form>
+			</div>
+			
+		</div>
+		
+		<p:growl id="messages" showDetail="true" autoUpdate="true" />
+		
 		<h2>
 			<ui:insert name="titulo"></ui:insert>
+			
 		</h2>
 	</div>
 	<div id="conteudo">
