@@ -120,7 +120,7 @@
 					filterBy="#{livro.dataLancamento.time}" filterMatchMode="contains">
 					<f:facet name="header">Data</f:facet>
 					<h:outputText value="#{livro.dataLancamento.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 				<p:column>

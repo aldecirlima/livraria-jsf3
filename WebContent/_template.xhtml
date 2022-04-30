@@ -22,12 +22,14 @@
 				<h:form rendered="#{usuarioLogado != null}">
 
 					<p:menuButton value="Menu">
-						<p:menuitem value="Livro" action="livro" icon="ui-icon-note" />
-						<p:menuitem value="Autores" action="autor" icon="ui-icon-person" />
-						<p:menuitem value="Ring" action="ring"
+						<p:menuitem value="Livro" action="livro?faces-redirect=true" icon="ui-icon-note" />
+						<p:menuitem value="Autores" action="autor?faces-redirect=true" icon="ui-icon-person" />
+						<p:menuitem value="Ring" action="ring?faces-redirect=true"
 							icon="ui-icon-arrowthick-2-e-w" />
-						<p:menuitem value="Carousel" action="carousel"
+						<p:menuitem value="Carousel" action="carousel?faces-redirect=true"
 							icon="ui-icon-transfer-e-w" />
+						<p:menuitem value="Vendas" action="vendas?faces-redirect=true"
+							icon="ui-icon-image" />
 						<p:separator />
 						<p:menuitem value="Logout" action="#{loginBean.deslogar}"
 							icon="ui-icon-power" />

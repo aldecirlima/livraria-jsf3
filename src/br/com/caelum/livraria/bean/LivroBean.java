@@ -65,11 +65,11 @@ public class LivroBean implements Serializable {
 	public void gravarAutor() {
 		Autor autor = new DAO<Autor>(Autor.class).buscaPorId(this.autorId);
 		this.livro.adicionaAutor(autor);
-		System.out.println("Escrito por: " + autor.getNome());
+//		System.out.println("Escrito por: " + autor.getNome());
 	}
 
 	public void gravar() {
-		System.out.println("Gravando livro " + this.livro.getTitulo());
+//		System.out.println("Gravando livro " + this.livro.getTitulo());
 
 		if (livro.getAutores().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage("autor",
@@ -90,7 +90,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public void remover(Livro livro) {
-		System.out.println("Removendo livro");
+//		System.out.println("Removendo livro");
 		new DAO<Livro>(Livro.class).remove(livro);
 	}
 
@@ -99,12 +99,12 @@ public class LivroBean implements Serializable {
 	}
 
 	public void carregar(Livro livro) {
-		System.out.println("Carregando livro");
+//		System.out.println("Carregando livro");
 		this.livro = livro;
 	}
 
 	public String formAutor() {
-		System.out.println("Chamanda do formulário do Autor.");
+//		System.out.println("Chamanda do formulário do Autor.");
 		return "autor?faces-redirect=true";
 	}
 

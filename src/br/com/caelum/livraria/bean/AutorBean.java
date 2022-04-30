@@ -50,7 +50,7 @@ public class AutorBean {
 //	}
 
 	public String gravar() {
-		System.out.println("Gravando autor " + this.autor.getNome());
+//		System.out.println("Gravando autor " + this.autor.getNome());
 		if (this.autor.getId() == null) {
 			new DAO<Autor>(Autor.class).adiciona(this.autor);
 		} else {
@@ -67,7 +67,7 @@ public class AutorBean {
 //	}
 
 	public void remover(Autor autor) {
-		System.out.println("Removendo autor");
+//		System.out.println("Removendo autor");
 		new DAO<Autor>(Autor.class).remove(autor);
 	}
 

@@ -16,7 +16,7 @@ public class LoginBean {
 	private Usuario usuario = new Usuario();
 
 	public String efetuaLogin() {
-		System.out.println("Fazendo login do usuário: " + this.usuario.getEmail());
+//		System.out.println("Fazendo login do usuário: " + this.usuario.getEmail());
 		FacesContext context = FacesContext.getCurrentInstance();
 
 		boolean existe = new UsuarioDao().existe(this.usuario);
