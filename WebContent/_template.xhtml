@@ -22,17 +22,17 @@
 				<h:form rendered="#{usuarioLogado != null}">
 
 					<p:menuButton value="Menu">
-						<p:menuitem value="Livro" action="livro?faces-redirect=true" icon="ui-icon-note" />
-						<p:menuitem value="Autores" action="autor?faces-redirect=true" icon="ui-icon-person" />
+						<p:menuitem value="Livros" action="livro?faces-redirect=true" icon="fa fa-fw fa-book" />
+						<p:menuitem value="Autores" action="autor?faces-redirect=true" icon="fa fa-fw fa-user" />
 						<p:menuitem value="Ring" action="ring?faces-redirect=true"
-							icon="ui-icon-arrowthick-2-e-w" />
+							icon="fa fa-fw fa-sliders" />
 						<p:menuitem value="Carousel" action="carousel?faces-redirect=true"
-							icon="ui-icon-transfer-e-w" />
+							icon="fa fa-fw fa-list-alt" />
 						<p:menuitem value="Vendas" action="vendas?faces-redirect=true"
-							icon="ui-icon-image" />
+							icon="fa fa-fw fa-bar-chart" />
 						<p:separator />
 						<p:menuitem value="Logout" action="#{loginBean.deslogar}"
-							icon="ui-icon-power" />
+							icon="fa fa-fw fa-sign-out" />
 					</p:menuButton>
 				</h:form>
 			</div>
