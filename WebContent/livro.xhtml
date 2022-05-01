@@ -83,8 +83,8 @@
             			Autores
         			</f:facet>
 
-						<p:commandLink styleClass="ui-icon ui-icon-trash" title="Remover"
-							style="float:left;margin-right:10px;" process="@this"
+						<p:commandLink styleClass="fa fa-fw fa-trash-o" title="Remover"
+							style="float:left;margin:0px 10px 0px 10px;text-decoration:none;" process="@this"
 							action="#{livroBean.removerAutorDoLivro(autor)}" update="@form" />
         			
         			#{autor.nome}
@@ -137,7 +137,7 @@
 	</ui:define>
 
 	<ui:define name="footer">
-		Livraria - Livro
+		Livraria - Livros
 	</ui:define>
 
 </ui:composition>

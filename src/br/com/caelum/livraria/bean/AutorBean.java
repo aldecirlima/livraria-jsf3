@@ -1,19 +1,25 @@
 package br.com.caelum.livraria.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-import br.com.caelum.livraria.dao.DAO;
+import br.com.caelum.livraria.dao.AutorDao;
 import br.com.caelum.livraria.modelo.Autor;
-import br.com.caelum.livraria.util.RedirectView;
 
-@ManagedBean
-@ViewScoped
-public class AutorBean {
+@Named
+@ViewScoped // javax.faces.view.ViewScoped;
+public class AutorBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Autor autor = new Autor();
+	
+	@Inject
+	private AutorDao dao;
 
 	private Integer autorId;
 
@@ -26,7 +32,7 @@ public class AutorBean {
 	}
 
 	public List<Autor> getAutores() {
-		return new DAO<Autor>(Autor.class).listaTodos();
+		return this.dao.listaTodos();
 	}
 
 	public Integer getAutorId() {
@@ -38,37 +44,21 @@ public class AutorBean {
 	}
 
 	public void carregarAutorPelaId() {
-		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+		this.autor = this.dao.buscaPorId(autorId);
 	}
 
-//	public void carregarAutorPelaId() {
-//	    Integer id = this.autor.getId();
-//	    this.autor = new DAO<Autor>(Autor.class).buscaPorId(id);
-//	    if (this.autor == null) {
-//	            this.autor = new Autor();
-//	    }
-//	}
-
-	public String gravar() {
-//		System.out.println("Gravando autor " + this.autor.getNome());
+	public void gravar() {
 		if (this.autor.getId() == null) {
-			new DAO<Autor>(Autor.class).adiciona(this.autor);
+			this.dao.adiciona(this.autor);
 		} else {
-			new DAO<Autor>(Autor.class).atualiza(this.autor);
+			this.dao.atualiza(this.autor);
 		}
 
 		this.autor = new Autor();
-		return new RedirectView("livro").toString();
 	}
 
-//	public void carregar(Autor autor) {
-//		System.out.println("Carregando Autor...");
-//		this.autor = autor;
-//	}
-
 	public void remover(Autor autor) {
-//		System.out.println("Removendo autor");
-		new DAO<Autor>(Autor.class).remove(autor);
+		this.dao.remove(autor);
 	}
 
 }
