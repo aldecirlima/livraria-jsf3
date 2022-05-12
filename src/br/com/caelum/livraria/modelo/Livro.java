@@ -28,7 +28,7 @@ public class Livro {
 
 	// Lazy inicialization = preguiçosamente inicializado. Para corrigir adicionar o
 	// fetch, conforme abaixo.
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Autor> autores = new ArrayList<Autor>();
 
 	public Livro(Integer id, String titulo, String isbn, Double preco, Calendar dataLancamento) {

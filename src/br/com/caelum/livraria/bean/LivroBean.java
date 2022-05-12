@@ -23,6 +23,9 @@ import br.com.caelum.livraria.tx.Transactional;
 public class LivroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	FacesContext context;
 
 	private Livro livro = new Livro();
 
@@ -78,7 +81,7 @@ public class LivroBean implements Serializable {
 	public void gravar() {
 
 		if (livro.getAutores().isEmpty()) {
-			FacesContext.getCurrentInstance().addMessage("autor",
+			context.addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos um Autor."));
 			return;
 		}
@@ -104,7 +107,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public void carregar(Livro livro) {
-		this.livro = livro;
+		this.livro = this.livroDao.buscaPorId(livro.getId());
 	}
 
 	public String formAutor() {

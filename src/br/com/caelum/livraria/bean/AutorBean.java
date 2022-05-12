@@ -35,6 +35,9 @@ public class AutorBean implements Serializable {
 	public List<Autor> getAutores() {
 		return this.dao.listaTodos();
 	}
+//	public List<Autor> getAutores() {
+//		return this.dao.listaTodos();
+//	}
 
 	public Integer getAutorId() {
 		return autorId;

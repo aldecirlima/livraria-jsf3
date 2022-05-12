@@ -84,8 +84,9 @@
         			</f:facet>
 
 						<p:commandLink styleClass="fa fa-fw fa-trash-o" title="Remover"
-							style="float:left;margin:0px 10px 0px 10px;text-decoration:none;" process="@this"
-							action="#{livroBean.removerAutorDoLivro(autor)}" update="@form" />
+							style="float:left;margin:0px 10px 0px 10px;text-decoration:none;"
+							process="@this" action="#{livroBean.removerAutorDoLivro(autor)}"
+							update="@form" />
         			
         			#{autor.nome}
 				</p:dataList>
@@ -98,11 +99,12 @@
 		</h:form>
 		<br />
 		<h:form id="formTabelaLivros">
-			<p:dataTable value="#{livroBean.livros}" var="livro"
-				id="tabelaLivros" paginator="true" rows="5">
+			<p:dataTable var="livro" value="#{livroBean.livros}"
+				id="tabelaLivros" paginator="true" rows="5" resizableColumns="true"
+				paginatorPosition="bottom" rowKey="#{livro.id}">
 				<f:facet name="header">Livros</f:facet>
 				<p:column headerText="Título" sortBy="#{livro.titulo}"
-					filterBy="#{livro.titulo}" filterMatchMode="startsWith">
+					filterBy="#{livro.titulo}" filterMatchMode="contains">
 					<h:outputText value="#{livro.titulo}" />
 				</p:column>
 				<p:column headerText="ISBN" sortBy="#{livro.isbn}">
